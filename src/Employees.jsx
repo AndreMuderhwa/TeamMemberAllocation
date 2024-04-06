@@ -93,10 +93,24 @@ const Employees=()=>{
     } 
 
     function handleEmployeeCardClick(e){
-        const transformedEmployees=employees.map((employee) => employee.id ===parseInt(e.currentTarget.id)
-                                                ?(employee.teamName === selectedTeam)?{...employee,teamName:''}:{...employee,teamName:selectedTeam}
-                                                :employee)
-        setEmployees(transformedEmployees);
+        // const transformedEmployees=employees.map((employee) => employee.id ===parseInt(e.currentTarget.id)
+                                              // ?(employee.teamName === selectedTeam)?{...employee,teamName:''}:{...employee,teamName:selectedTeam}
+        //                                         :employee)
+
+            const transformedEmployees = employees.map((employee) => {
+              if (employee.id === parseInt(e.currentTarget.id)) {
+                if (employee.teamName === selectedTeam) {
+                  return { ...employee, teamName: '' };
+                } else {
+                  return { ...employee, teamName: selectedTeam };
+                }
+              } else {
+                return employee;
+              }
+            });
+            setEmployees(transformedEmployees);
+
+      
 
     }
     
