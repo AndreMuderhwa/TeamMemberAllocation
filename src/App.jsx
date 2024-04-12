@@ -5,6 +5,8 @@ import Footer from './Footer';
 //import Content from './Content';
 import Employees from './Employees';
 import GroupedTeamMembers from './GroupedTeamMembers';
+import NotFound from './NotFound';
+import Nav from './Nav';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 
 function App() {
@@ -131,6 +133,7 @@ useEffect(()=>{
   
   return (
    <Router>
+        <Nav/>
         <Header selectedTeam={selectedTeam}
                   teamMemberCount={employees.filter((employee)=>employee.teamName===selectedTeam).length}
         />
@@ -142,7 +145,8 @@ useEffect(()=>{
 
               />}>
         </Route>
-        <Route path="GroupedTeamMembers" element={<GroupedTeamMembers/>}></Route>
+        <Route path="GroupedTeamMembers" element={<GroupedTeamMembers employees={employees} selectedTeam={selectedTeam} setTeam={setTeam}/>}></Route>
+        <Route path="*" element={<NotFound/>}></Route>
 
         </Routes>
         <Footer/>
